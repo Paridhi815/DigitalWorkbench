@@ -1,0 +1,56 @@
+{
+  "name": "full-feature-micro-service-example",
+  "version": "1.0.0",
+  "description": "A Sample micro-service to demonstrate usage of @apifie/node-microservice npm module",
+  "author": "Gaurav Kumar <mail2gauravkumar@gmail.com>",
+  "private": true,
+  "scripts": {
+    "start:prod": "node ./bin/www",
+    "start": "node_modules/.bin/cross-env NODE_ENV=development nodemon --require ./setup-env.js ./bin/www",
+    "test": "npm run coverage",
+    "test:integrationall": "npm run db:migrate:test && npm run test:integration",
+    "db:migrate:test": "node_modules/.bin/cross-env NODE_ENV=test node -r ./setup-env.js node_modules/.bin/sequelize db:migrate --config src/config/db-config.js",
+    "db:migrate": "node_modules/.bin/sequelize db:migrate --config src/config/db-config.js",
+    "db:migrate:prod": "node_modules/.bin/cross-env NODE_ENV=production node_modules/.bin/sequelize db:migrate --config src/config/db-config.js",
+    "apidocs:generate": "node_modules/.bin/cross-env GENERATE_DOCS=true node ./bin/www",
+    "test:integration": "node_modules/.bin/cross-env NODE_ENV=test nyc mocha \"test/integration/**/*.spec.js\" --exit",
+    "test:integrationwatch": "node_modules/.bin/cross-env NODE_ENV=test nyc mocha \"**/test/integration/**/*.spec.js\" --watch",
+    "coverage": "node_modules/.bin/cross-env NODE_ENV=test nyc npm run test:unit",
+    "test:unit": "node_modules/.bin/cross-env NODE_ENV=test mocha \"test/unit/**/*.spec.js\" --exit",
+    "test:unitwatch": "node_modules/.bin/cross-env NODE_ENV=test nyc mocha \"**/test/unit/**/*.spec.js\" --watch",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix",
+    "prepush": "npm run lint && npm run coverage"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "test/*",
+      "api-docs/*"
+    ],
+    "delay": "2500"
+  },
+  "dependencies": {
+    "@apifie/node-microservice": "1.0.0",
+    "dotenv": "^6.0.0",
+    "chai-http": "4.2.0",
+    "joi": "13.6.0"
+  },
+  "devDependencies": {
+    "babel-plugin-istanbul": "4.1.5",
+    "babel-register": "6.26.0",
+    "chai": "4.1.2",
+    "chai-as-promised": "7.1.1",
+    "chai-spies": "1.0.0",
+    "cross-env": "5.1.3",
+    "eslint": "4.18.2",
+    "eslint-config-airbnb-base": "12.1.0",
+    "eslint-plugin-import": "2.9.0",
+    "husky": "0.14.3",
+    "mocha": "5.0.0",
+    "nodemon": "1.14.12",
+    "nyc": "11.4.1",
+    "proxyquire": "2.0.1",
+    "sonarqube-scanner": "2.0.2",
+    "supertest": "3.0.0"
+  }
+}
