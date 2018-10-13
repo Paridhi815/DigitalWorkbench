@@ -1,2 +1,2 @@
-console.log('hi')
-require('dotenv').config()
+console.log('hi');
+require('dotenv').config();

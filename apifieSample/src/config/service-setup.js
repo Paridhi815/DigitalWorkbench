@@ -1,12 +1,12 @@
-const packageJson = require('./../../package.json')
-const path = require('path')
-const Joi = require('joi')
-const processTestMessage = require('./../mq-processor-usage')
+const packageJson = require('./../../package.json');
+const path = require('path');
+const Joi = require('joi');
+const processTestMessage = require('./../mq-processor-usage');
 
-const dbConfig = require('./db-config')
+const dbConfig = require('./db-config');
 
-const name = packageJson.name
-const version = packageJson.version
+const name = packageJson.name;
+const version = packageJson.version;
 
 const serviceSetup = {
   env: process.env.NODE_ENV,
@@ -68,7 +68,7 @@ const serviceSetup = {
     TO_BE_SHARED: process.env.TO_BE_SHARED,
     X_NOT_TO_BE_SHARED: process.env.NOT_TO_BE_SHARED
   }
-}
+};
 
 // Setup for MQ Listeners
 const mqListeners = {
@@ -83,9 +83,9 @@ const mqListeners = {
     }),
     listener: processTestMessage
   }
-}
+};
 
 module.exports = {
   serviceSetup,
   mqListeners
-}
+};

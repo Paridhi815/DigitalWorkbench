@@ -3,7 +3,7 @@
 
 const {
   createUser, updateUser, deleteUser, getUser
-} = require('../service/user-service')
+} = require('../service/user-service');
 
 module.exports = [{
   path: '/user/:email',
@@ -53,4 +53,4 @@ module.exports = [{
       }
     }
   }
-}]
+}];

@@ -17,10 +17,7 @@
     "test:integrationwatch": "node_modules/.bin/cross-env NODE_ENV=test nyc mocha \"**/test/integration/**/*.spec.js\" --watch",
     "coverage": "node_modules/.bin/cross-env NODE_ENV=test nyc npm run test:unit",
     "test:unit": "node_modules/.bin/cross-env NODE_ENV=test mocha \"test/unit/**/*.spec.js\" --exit",
-    "test:unitwatch": "node_modules/.bin/cross-env NODE_ENV=test nyc mocha \"**/test/unit/**/*.spec.js\" --watch",
-    "lint": "eslint ./src",
-    "lint:fix": "eslint ./src --fix",
-    "prepush": "npm run lint && npm run coverage"
+    "test:unitwatch": "node_modules/.bin/cross-env NODE_ENV=test nyc mocha \"**/test/unit/**/*.spec.js\" --watch"
   },
   "nodemonConfig": {
     "ignore": [
