@@ -9,7 +9,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+<<<<<<< HEAD
     "mustache": "^3.0.0"
+=======
+    "mustache": "^3.0.0",
+    "winston": "^3.0.0-rc4"
+>>>>>>> 2f90dd9555eaa49493ade6df1039c8ff0686f926
   },
   "devDependencies": {
     "eslint": "^5.6.1"
