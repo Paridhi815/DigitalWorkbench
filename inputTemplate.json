@@ -2,38 +2,48 @@
     "services": [
         {
             "service1": {
-                "users": {
-                    "firstname": {
-                        "datatype": "string",
-                        "required": true
+                "author": "Gaurav Kumar <mail2gauravkumar@gmail.com>",
+                "version": "1.0.0",
+                "description": "A Sample micro-service to demonstrate usage of @apifie/node-microservice npm module",
+                "models": {
+                    "user": {
+                        "firstname": {
+                            "datatype": "string",
+                            "required": true
+                        },
+                        "lastname": {
+                            "datatype": "string",
+                            "notNull": true
+                        }
                     },
-                    "lastname": {
-                        "datatype": "string",
-                        "notNull": true
-                    }
-                },
-                "locations": {
-                    "latitude": {
-                        "datatype": "string",
-                        "required": true
-                    },
-                    "longitude": {
-                        "datatype": "string",
-                        "notNull": false
+                    "location": {
+                        "latitude": {
+                            "datatype": "string",
+                            "required": true
+                        },
+                        "longitude": {
+                            "datatype": "string",
+                            "notNull": false
+                        }
                     }
                 }
             }
         },
         {
             "service2": {
-                "greetings": {
-                    "hello": {
-                        "datatype": "string",
-                        "required": true
-                    },
-                    "hi": {
-                        "datatype": "string",
-                        "notNull": true
+                "author": "Paridhi Mohindra <paridhi815@gmail.com>",
+                "version": "1.0.0",
+                "description": "A Sample micro-service to demonstrate usage of @apifie/node-microservice npm module",
+                "models": {
+                    "greeting": {
+                        "hello": {
+                            "datatype": "integer",
+                            "required": true
+                        },
+                        "hi": {
+                            "datatype": "boolean",
+                            "notNull": true
+                        }
                     }
                 }
             }

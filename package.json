@@ -8,7 +8,10 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "mustache": "^3.0.0",
+    "winston": "^3.0.0-rc4"
+  },
   "devDependencies": {
     "eslint": "^5.6.1"
   }
