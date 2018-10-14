@@ -1,0 +1,16 @@
+{
+  "include": [
+    "src/**/*.js"
+  ],
+  "exclude": [
+        "src/index.js",
+        "src/models/sample-model.js"
+      ],
+  "check-coverage": true,
+  "reporter": [
+    "lcov",
+    "text-summary"
+  ],
+  "all": true,
+  "lines": 0
+}
