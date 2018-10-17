@@ -1,0 +1,83 @@
+version: '3'
+
+services:
+  nodester:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - nodester-network
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - .:/srv/app/
+    command: ["node", "lib/"]
+    depends_on:
+      - database
+
+  database:
+    image: 'mysql/mysql-server'
+    restart: always
+    ports:
+      - "3306:3306"
+    networks:
+      - nodester-network
+    environment:
+      MYSQL_USER: paridhimohindra
+      MYSQL_PASSWORD: pm
+      MYSQL_DATABASE: banklb
+      MYSQL_ROOT_PASSWORD: pass
+    volumes:
+      - db-data-nodester-mysql:/var/lib/mysql
+
+  storage:
+    image: openzipkin/zipkin-mysql
+    container_name: mysql
+    # Uncomment to expose the storage port for testing
+    # ports:
+    #   - 3306:3306
+
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    # Environment settings are defined here https://github.com/openzipkin/zipkin/tree/1.19.0/zipkin-server#environment-variables
+    environment:
+      - STORAGE_TYPE=mysql
+      # Point the zipkin at the storage backend
+      - MYSQL_HOST=mysql
+      # Uncomment to enable scribe
+      # - SCRIBE_ENABLED=true
+      # Uncomment to enable self-tracing
+      # - SELF_TRACING_ENABLED=true
+      # Uncomment to enable debug logging
+      # - JAVA_OPTS=-Dlogging.level.zipkin=DEBUG
+    ports:
+      # Port used for the Zipkin UI and HTTP Api
+      - 9411:9411
+    depends_on:
+      - storage
+    restart: unless-stopped
+
+  dependencies:
+    image: openzipkin/zipkin-dependencies
+    container_name: dependencies
+    entrypoint: crond -f
+    environment:
+      - STORAGE_TYPE=mysql
+      - MYSQL_HOST=mysql
+      # Add the baked-in username and password for the zipkin-mysql image
+      - MYSQL_USER=zipkin
+      - MYSQL_PASS=zipkin
+      # Uncomment to adjust memory used by the dependencies job
+      - JAVA_OPTS=-verbose:gc -Xms512m -Xmx512m
+    depends_on:
+      - storage
+    restart: unless-stopped
+
+volumes:
+  db-data-nodester-mysql:
+
+networks:
+  nodester-network:
