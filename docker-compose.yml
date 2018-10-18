@@ -1,21 +1,21 @@
 version: '3'
 
 services:
-  nodester:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "3000:3000"
-    networks:
-      - nodester-network
-    environment:
-      - NODE_ENV=development
-    volumes:
-      - .:/srv/app/
-    command: ["node", "lib/"]
-    depends_on:
-      - database
+  # nodester:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "3000:3000"
+  #   networks:
+  #     - nodester-network
+  #   environment:
+  #     - NODE_ENV=development
+  #   volumes:
+  #     - .:/srv/app/
+  #   command: ["node", "lib/"]
+  #   depends_on:
+  #     - database
 
   database:
     image: 'mysql/mysql-server'
